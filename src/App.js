@@ -89,6 +89,28 @@ const App = () => {
     });
   };
 
+  const replaceText = (word) => {
+    setTextContent((prev) => {
+      const newWord = prev.split(' ');
+      newWord[activeWord] = word;
+      setOptions([]);
+      disableControlPanel();
+      return newWord.join(' ');
+    });
+  };
+
+  const updateText = () => {
+    setTextContent((prev) => {
+      const node = document.getElementById('file');
+      const newWord = node.innerText;
+      if (prev !== newWord) {
+        node.removeChild(node.childNodes[node.children.length - 1]);
+        return newWord;
+      }
+      return prev;
+    });
+  };
+
   return (
     <div className="App">
       <header>
@@ -109,7 +131,12 @@ const App = () => {
           isDisabled={!Boolean(activeWord)}
         />
         <div className="container editor">
-          <FileZone setSelected={getSelectedText} onClick={disableControlPanel}>
+          <FileZone 
+						setSelected={getSelectedText} 
+						onClick={disableControlPanel}
+						onPaste={updateText}
+						updateText={updateText}
+					>
             {textContent.split(' ').map((word, index) => (
               <span
                 key={`${word}${index}`}
@@ -124,11 +151,11 @@ const App = () => {
                   italicWords.includes(index) ? 'italic ' : ''
                 }${underlinedWords.includes(index) ? 'underlined ' : ''}`}
               >
-                {`${word} `}
+                {`${word}`} <span> </span>
               </span>
             ))}
           </FileZone>
-          <Synonyms options={options} />
+          <Synonyms options={options} onClick={replaceText} />
         </div>
       </main>
     </div>
