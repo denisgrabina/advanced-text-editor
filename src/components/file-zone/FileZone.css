@@ -1,0 +1,27 @@
+#file-zone {
+  background-color: #f1f0f0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: 5px;
+  width: 100%;
+}
+
+#file {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  background-color: #fff;
+  border: 1px solid #e4dede;
+  padding: 1rem;
+}
+
+@media all and (min-width: 601px) {
+  #file-zone {
+    width: 70%;
+  }
+  #file {
+    height: 80vh;
+  }
+}

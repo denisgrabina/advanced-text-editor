@@ -1,0 +1,16 @@
+.synonyms {
+  background-color: #f1f0f0;
+  border: 1px solid #e4dede;
+  text-align: center;
+  width: 100%;
+}
+
+.synonyms ul {
+  padding: 5px;
+}
+
+@media all and (min-width: 601px) {
+  .synonyms {
+    width: 30%;
+  }
+}
